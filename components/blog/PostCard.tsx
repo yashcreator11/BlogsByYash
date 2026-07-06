@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Clock } from "lucide-react";
 import type { BlogPost } from "@/types";
 import { getCoverImage, getExcerpt, getReadingTime } from "@/lib/blogger";
-import { formatDateShort } from "@/lib/utils";
+import { formatDateShort, toAbsoluteUrl } from "@/lib/utils";
 
 export function PostCard({ post }: { post: BlogPost }) {
   const cover = getCoverImage(post);
@@ -39,7 +39,7 @@ export function PostCard({ post }: { post: BlogPost }) {
           <div className="flex items-center gap-2">
             {post.author?.image?.url && (
               <Image
-                src={post.author.image.url}
+                src={toAbsoluteUrl(post.author.image.url)!}
                 alt={post.author.displayName}
                 width={20}
                 height={20}

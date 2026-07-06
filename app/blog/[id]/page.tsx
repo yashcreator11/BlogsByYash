@@ -9,7 +9,7 @@ import {
   getExcerpt,
   getReadingTime,
 } from "@/lib/blogger";
-import { extractHeadings, addHeadingIds, formatDate } from "@/lib/utils";
+import { extractHeadings, addHeadingIds, formatDate, toAbsoluteUrl } from "@/lib/utils";
 import { ReadingProgressBar } from "@/components/blog/ReadingProgressBar";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { ShareButtons } from "@/components/blog/ShareButtons";
@@ -125,7 +125,7 @@ export default async function PostPage({ params }: PageProps) {
           <div className="flex items-center gap-2">
             {post.author?.image?.url && (
               <Image
-                src={post.author.image.url}
+                src={toAbsoluteUrl(post.author.image.url)!}
                 alt={post.author.displayName}
                 width={24}
                 height={24}
@@ -168,7 +168,7 @@ export default async function PostPage({ params }: PageProps) {
 
             <AuthorBox
               name={post.author?.displayName}
-              avatarUrl={post.author?.image?.url}
+              avatarUrl={toAbsoluteUrl(post.author?.image?.url)}
             />
 
             <div className="mt-10">

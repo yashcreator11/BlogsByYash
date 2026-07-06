@@ -46,8 +46,11 @@
 }
 
 /* Kill ALL horizontal overflow at the root — nothing should scroll sideways */
-html, body {
+html {
   overflow-x: hidden;
+}
+
+body {
   max-width: 100%;
 }
 

@@ -5,6 +5,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// Blogger sometimes returns protocol-relative URLs (e.g. "//www.blogger.com/img/..."),
+// which next/image rejects since it requires an absolute URL. This normalizes them.
+export function toAbsoluteUrl(url?: string | null): string | undefined {
+  if (!url) return undefined;
+  if (url.startsWith("//")) return `https:${url}`;
+  return url;
+}
+
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   return date.toLocaleDateString("en-US", {
